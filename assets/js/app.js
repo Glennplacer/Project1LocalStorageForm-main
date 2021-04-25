@@ -49,6 +49,9 @@ function removeTweet(e) {
     if(e.target.classList.contains('remove-tweet')) {
         e.target.parentElement.remove();
     } 
+
+    //remove from storage
+    removeTweetLocalStorage( e.target.parentElement.textContent );
 }
 
 //adds the tweets into the local storage
@@ -95,5 +98,23 @@ function localStorageOnLoad() {
 
         //add to the list
         tweetList.appendChild(li);
+    });
+}
+
+//removes the tweet from local storage
+
+function removeTweetLocalStorage(tweet) {
+    //get tweets from storage
+    let tweets = getTweetsFromStorage();
+
+    //remove the x from the tweet
+
+    const tweetDelete = tweet.substring( 0, tweet.length -1 );
+    
+    //loop trough the tweets and remove the tweet thats equal
+    tweets.forEach(function(tweetLS) {
+        if(tweetDelete === tweetLS) {
+            console.log('yes');
+        }
     });
 }
